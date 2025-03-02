@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Application</title>
+    <!-- Author Name -->
+    <meta name="author" content="Rizwan Ahmed" />
+    <!-- Keywords of Webpage -->
+    <meta name="keywords" content="weather, weather forecast, current weather" />
+    <!-- Description of Webpage -->
+    <meta name="description"
+        content="weather app provides real-time and upcoming weather information for your current location, including temperature, precipitation, wind speed, and more, allowing you to plan your day accordingly. " />
+    <!-- CSS Stylesheet -->
+    <link href="./output.css" rel="stylesheet">
+     <!-- Favicon -->
+    <link rel="shortcut icon" href="../Images/weather.png" type="image/x-icon">
+    <!-- CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="bg-black text-white italic">
+
+    
+    <header id="header" class="max-w-[100vw] h-[10vh] flex p-2 justify-between items-center">
+
+        
+        <h1 id="heading" class="text-2xl font-bold">Weather</h1>
+
+       
+        <ul id="recentList" class="bg-slate-800 rounded-1xl p-1 min-w-[25vw] flex items-center justify-between hover:bg-slate-600">Recent Searches <i class="fa-solid fa-chevron-down hover:text-black"></i></ul>
+
+    </header>
+
+    <main id="main" class="w-full h-[90vh] flex flex-col md:flex-row">
+
+        
+        <div id="weatherinput" class="bg-slate-800 m-1 p-3 rounded-2xl flex flex-col md:w-[30vw] lg:w-[30vw]">
+
+            
+            <h3 class="font-bold text-[1.25rem] mt-[4px] mb-[4px]">City Name</h3>
+
+            
+            <input id="userInput" class="mt-[5px] mb-[5px] border-b-1 outline-0 p-1 hover:border-b-red-400 rounded-b-1xl" type="text" placeholder="E.g, Delhi, Mumbai ">
+
+            
+            <button id="searchBtn" class="rounded-2xl mt-[10px] mb-[10px] p-1 bg-blue-800 hover:bg-blue-600 hover:font-bold"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+
+            
+            <div id="seperate" class="h-0.5 bg-black mt-[5px] mb-[5px]"></div>
+
+            
+            <button id="locationBtn" class="mt-[10px] mb-[10px] p-1 bg-slate-700 rounded-2xl hover:font-bold hover:bg-slate-600"><i class="fa-solid fa-location-crosshairs"></i>
+            Current Location</button>
+
+        </div>
+
+        <div id="weatherOutput" class="md:w-[70vw] lg:w-[70vw] md:overflow-x-hidden w-full p-2" >
+
+            <div id="currentWeather">
+                <h2 class="mt-[5px] mb-[5px] font-bold text-[1.25rem]">Today's Highlights</h2>
+
+                <div id="currrentWeatherValues" class="flex flex-col w-full justify-center gap-3  p-2 items-center">
+
+                    <div id="cityDiv" class="bg-slate-800 flex justify-around items-center h-[20vh] rounded-2xl hover:bg-slate-600 w-full">
+                        <h3 class="font-bold text-2xl">City:</h3>
+                        <h3 id="city" class="text-3xl">______</h3>
+                    </div>
+
+                    <div id="dateDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-slate-600">
+                        <h3 class="font-bold text-2xl">Date:</h3>
+                        <h3 id="date" class="text-3xl">______</h3>
+                    </div>
+
+                    <div id="temperatureDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-slate-600">
+                        <h3 class="font-bold text-2xl"><i class="fa-solid fa-temperature-three-quarters text-red-400 text-3xl"></i> Temp</h3>
+                        <h3 id="temperature" class="text-3xl">______ &deg;C</h3>
+                    </div>
+
+                    <div id="weatherIconDiv" class="bg-slate-800 w-full h-[20vh] flex  items-center justify-around rounded-2xl hover:bg-slate-600 ">
+                        <img class="h-[18vh] " id="currentweatherIcon" src="https://openweathermap.org/img/wn/10d@4x.png" alt="Weather">
+                        <h3 id="WeatherText" class="text-3xl">______</h3>
+                    </div>
+
+                    <div id="humidityDiv" class="bg-slate-800 w-full h-[20vh] flex  items-center justify-around rounded-2xl hover:bg-slate-600">
+                        <h3 class="font-bold text-2xl"><i class="fa-solid fa-droplet text-blue-300 text-3xl"></i> Humidity:</h3>
+                        <h3 id="humidity" class="text-3xl">______ %</h3>
+                    </div>
+
+                    <div id="windDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-slate-600">
+                        <h3 class="font-bold text-2xl"><i class="fa-solid fa-wind text-sky-200 text-3xl"></i> Wind:</h3>
+                        <h3 id="wind" class="text-3xl">______ M/S</h3>
+                    </div>
+                    <div id="cloudDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-slate-600">
+                        <h3 class="font-bold text-2xl"><i class="fa-solid fa-wind text-3xl text-blue-700"></i> Gust:</h3>
+                        <h3 id="cloud" class="text-3xl">______ M/S</h3>
+                    </div>
+                    <div id="pressureDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-slate-600">
+                        <h3 class="font-bold text-2xl"><i class="fa-solid fa-volcano text-3xl text-red-300 "></i> Pressure:</h3>
+                        <h3 id="presure" class="text-3xl">______ hPa</h3>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div id="foreCast">
+
+                <h2 class="mt-[5px] mb-[5px] font-bold text-[1.25rem]">5-Day Forecast</h2>
+
+                <div id="forcastContainer" class="flex flex-col justify-center items-center gap-3 p-2 md:grid  md:grid-cols-2 lg:grid-cols-3 ">
+
+                    <div class="p-3 flex flex-col mt-[5px] mb-[5px] bg-slate-800  rounded-2xl w-full hover:bg-slate-600">
+
+                        <h3 id="fdate1" class="text-[1.25rem]"> _____</h3>
+
+                        <img src="https://openweathermap.org/img/wn/10d@4x.png" alt="Weather" class="h-[20vh] w-[50%]">
+
+                        <div id="temp1" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-temperature-three-quarters text-red-500"></i> Temp:  <span id="stemp1"> _____</span> &deg;C</div>
+
+                        <div id="wind1" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-wind text-blue-600"></i> Wind:  <span id="swind1"> _____</span> M/S</div>
+
+                        <div id="humidity1" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-droplet text-blue-700"></i> Humidity:  <span id="humidity1"> _____</span> %</div>
+
+                    </div>
+
+                    <div class="p-3 flex flex-col mt-[5px] mb-[5px] bg-slate-800 w-full rounded-2xl ] hover:bg-slate-600">
+
+                        <h3 id="fdate2" class="text-[1.25rem]">_____</h3>
+
+                        <img src="https://openweathermap.org/img/wn/10d@4x.png" alt="Weather" class="h-[20vh] w-[50%]">
+
+                        <div id="temp2" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-temperature-three-quarters  text-red-500"></i> Temp:  <span id="stemp2"> _____</span> &deg;C</div>
+
+                        <div id="wind2" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-wind text-blue-600"></i> Wind:  <span id="swind2"> _____</span> M/S</div>
+
+                        <div id="humidity2" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-droplet text-blue-700"></i> Humidity:  <span id="shumidity2"> _____</span> %</div>
+
+                    </div>
+
+                    <div class="p-3 flex flex-col mt-[5px] mb-[5px] bg-slate-800 w-full rounded-2xl  hover:bg-slate-600">
+
+                        <h3 id="fdate3" class="text-[1.25rem]">_____</h3>
+
+                        <img src="https://openweathermap.org/img/wn/10d@4x.png" alt="Weather" class="h-[20vh] w-[50%]">
+
+                        <div id="temp3" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-temperature-three-quarters  text-red-500"></i> Temp:  <span id="stemp3"> _____</span> &deg;C</div>
+
+                        <div id="wind3" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-wind text-blue-600"></i> Wind:  <span id="swind3"> _____</span> M/S</div>
+
+                        <div id="humidity3" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-droplet text-blue-700"></i> Humidity:  <span id="shumidity3"> _____</span> %</div>
+
+                    </div>
+
+                    <div class="p-3 flex flex-col mt-[5px] mb-[5px] bg-slate-800 w-full rounded-2xl  hover:bg-slate-600">
+
+                        <h3 id="fdate4" class="text-[1.25rem]">_____</h3>
+
+                        <img src="https://openweathermap.org/img/wn/10d@4x.png" alt="Weather" class="h-[20vh] w-[50%]">
+
+                        <div id="temp4" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-temperature-three-quarters  text-red-500"></i> Temp:  <span id="stemp4"> _____</span> &deg;C</div>
+
+                        <div id="wind4" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-wind text-blue-600"></i> Wind:  <span id="swind4"> _____</span> M/S</div>
+
+                        <div id="humidity4" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-droplet text-blue-700"></i> Humidity:  <span id="shumidity4"> _____</span> %</div>
+
+                    </div>
+
+                    <div class="p-3 flex flex-col mt-[5px] mb-[5px]  bg-slate-800 w-full rounded-2xl  hover:bg-slate-600">
+
+                        <h3 id="fdate5" class="text-[1.25rem]">_____</h3>
+
+                        <img src="https://openweathermap.org/img/wn/10d@4x.png" alt="Weather" class="h-[20vh] w-[50%]">
+
+                        <div id="temp5" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-temperature-three-quarters  text-red-500"></i> Temp:  <span id="stemp5"> _____</span> &deg;C</div>
+
+                        <div id="wind5" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-wind text-blue-600"></i> Wind:  <span id="swind5"> _____</span> M/S</div>
+
+                        <div id="humidity5" class="text-[1.1rem] mt-[5px] mb-[5px]"><i class="fa-solid fa-droplet text-blue-700"></i> Humidity:  <span id="shumidity5"> _____</span> %</div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </div> 
+
+    </main>
+
+    <script src="./index.js"></script>
+    
+</body>
+</html>
