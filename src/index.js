@@ -1,4 +1,4 @@
-// https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={API key}
+// Selecting DOM Elements
 let userInput = document.getElementById("userInput");
 let searchBtn = document.getElementById("searchBtn");
 let locationBtn = document.getElementById("locationBtn");
@@ -6,40 +6,46 @@ let todayWeatherDiv = document.getElementById("currrentWeatherValues");
 let forcastDiv = document.getElementById("forcastContainer");
 let errorMsg = document.getElementById("error");
 let recentSearchesDropdown = document.getElementById("recentSearches");
+// Open Weather API Key
 const apiKey = "056e78e6d023aca3f722c765b5db0a83";
 
+// To store search cities
 let listItems = [];
 
+// Load saved items from localStorage
 function loadItems() {
-    let storedCities = localStorage.getItem("userCity");
-    if (storedCities) {
-        listItems = JSON.parse(storedCities);
-    } else {
-        listItems = [];
-    }
-    recentSearchesDropdown.innerHTML = `<option value="">Recent Searches</option>`;
-    listItems.forEach(city => {
-        let option = document.createElement("option");
-        option.value = city;
-        option.textContent = city;
-        recentSearchesDropdown.appendChild(option);
-    });
+  let storedCities = localStorage.getItem("userCity");
+  if (storedCities) {
+    listItems = JSON.parse(storedCities);
+  } else {
+    listItems = [];
+  }
+  // Appending option to the select dropdown List
+  recentSearchesDropdown.innerHTML = `<option value="">Recent Searches</option>`;
+  listItems.forEach((city) => {
+    let option = document.createElement("option");
+    option.value = city;
+    option.textContent = city;
+    recentSearchesDropdown.appendChild(option);
+  });
 }
 
+// Save search cities to local storage
 function saveItems() {
-    let userCityValue = userInput.value.trim();
-    if (userCityValue !== "" && !listItems.includes(userCityValue)) {
-        listItems.push(userCityValue);
-        if (listItems.length > 5) {
-            listItems.shift(); 
-        }
-        localStorage.setItem("userCity", JSON.stringify(listItems));
-        loadItems();
+  let userCityValue = userInput.value.trim();
+  if (userCityValue !== "" && !listItems.includes(userCityValue)) {
+    listItems.push(userCityValue);
+    if (listItems.length > 5) {
+      // Keep last 5 searches
+      listItems.shift();
     }
+    localStorage.setItem("userCity", JSON.stringify(listItems));
+    // Reload Dropdown
+    loadItems();
+  }
 }
 
-
-
+// To generate HTML for displaying forecast and today's weather details
 function getForcastDays(name, days, index) {
   if (index === 0) {
     return `<div id="currrentWeatherValues" class="flex flex-col w-full justify-center gap-3  p-2 items-center">
@@ -125,6 +131,7 @@ function getForcastDays(name, days, index) {
   }
 }
 
+// Fetch weather updates using latitude and longitude
 function getweatherUpdates(name, lat, lon) {
   fetch(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`
@@ -166,6 +173,7 @@ function getweatherUpdates(name, lat, lon) {
     });
 }
 
+// Fetch user location based on search input
 function getUserLocation() {
   let uservalue = userInput.value.trim();
   if (!uservalue);
@@ -177,7 +185,7 @@ function getUserLocation() {
     .then((data) => {
       const { name, lat, lon } = data[0];
       getweatherUpdates(name, lat, lon);
-      saveItems()
+      saveItems();
     })
     .catch(() => {
       errorMsg.classList.toggle("hidden");
@@ -189,6 +197,7 @@ function getUserLocation() {
     });
 }
 
+// Fetch weather data based on user’s current location
 function getLocationBtnLocation() {
   navigator.geolocation.getCurrentPosition(
     (position) => {
@@ -198,8 +207,8 @@ function getLocationBtnLocation() {
       )
         .then((response) => response.json())
         .then((data) => {
-          const {name} = data[0]
-          getweatherUpdates(name, latitude, longitude)
+          const { name } = data[0];
+          getweatherUpdates(name, latitude, longitude);
         })
         .catch(() => {
           errorMsg.classList.toggle("hidden");
@@ -218,14 +227,15 @@ function getLocationBtnLocation() {
     }
   );
 }
-
-recentSearchesDropdown.addEventListener("change", function () {
+function dropDownList(){
   let selectedCity = this.value;
   if (selectedCity) {
-      userInput.value = selectedCity;
-      getUserLocation();
+    userInput.value = selectedCity;
+    getUserLocation();
   }
-});
+}
+// Event Listeners
 window.onload = loadItems;
+recentSearchesDropdown.addEventListener("change", dropDownList);
 locationBtn.addEventListener("click", getLocationBtnLocation);
 searchBtn.addEventListener("click", getUserLocation);
