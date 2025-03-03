@@ -14,7 +14,7 @@
     <!-- CSS Stylesheet -->
     <link href="./output.css" rel="stylesheet">
      <!-- Favicon -->
-    <link rel="shortcut icon" href="../Images/weather.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./Images/weather.png" type="image/x-icon">
     <!-- CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -26,8 +26,10 @@
         
         <h1 id="heading" class="text-2xl font-bold">Weather</h1>
 
-       
-        <ul id="recentList" class="bg-slate-800 rounded-1xl p-1 min-w-[25vw] flex items-center justify-between hover:bg-blue-400">Recent Searches <i class="fa-solid fa-chevron-down hover:text-black"></i></ul>
+        <select id="recentSearches" class="bg-slate-800 rounded-1xl p-1 min-w-[25vw] flex items-center justify-between hover:bg-blue-400">
+            <option value="">Recent Searches</option>
+        </select>
+
 
     </header>
 
@@ -100,7 +102,7 @@
                     </div>
                     <div id="pressureDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-blue-400">
                         <h3 class="font-bold text-2xl"><i class="fa-solid fa-volcano text-3xl text-red-300 "></i> Pressure:</h3>
-                        <h3 id="presure" class="text-3xl">______ hPa</h3>
+                        <h3 id="pressure" class="text-3xl">______ hPa</h3>
                     </div>
                 </div>
 

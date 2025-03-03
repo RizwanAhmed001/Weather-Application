@@ -5,7 +5,40 @@ let locationBtn = document.getElementById("locationBtn");
 let todayWeatherDiv = document.getElementById("currrentWeatherValues");
 let forcastDiv = document.getElementById("forcastContainer");
 let errorMsg = document.getElementById("error");
+let recentSearchesDropdown = document.getElementById("recentSearches");
 const apiKey = "056e78e6d023aca3f722c765b5db0a83";
+
+let listItems = [];
+
+function loadItems() {
+    let storedCities = localStorage.getItem("userCity");
+    if (storedCities) {
+        listItems = JSON.parse(storedCities);
+    } else {
+        listItems = [];
+    }
+    recentSearchesDropdown.innerHTML = `<option value="">Recent Searches</option>`;
+    listItems.forEach(city => {
+        let option = document.createElement("option");
+        option.value = city;
+        option.textContent = city;
+        recentSearchesDropdown.appendChild(option);
+    });
+}
+
+function saveItems() {
+    let userCityValue = userInput.value.trim();
+    if (userCityValue !== "" && !listItems.includes(userCityValue)) {
+        listItems.push(userCityValue);
+        if (listItems.length > 5) {
+            listItems.shift(); 
+        }
+        localStorage.setItem("userCity", JSON.stringify(listItems));
+        loadItems();
+    }
+}
+
+
 
 function getForcastDays(name, days, index) {
   if (index === 0) {
@@ -136,13 +169,15 @@ function getweatherUpdates(name, lat, lon) {
 function getUserLocation() {
   let uservalue = userInput.value.trim();
   if (!uservalue);
-  let fetchData = `http://api.openweathermap.org/geo/1.0/direct?q=${uservalue}&limit=5&appid=${apiKey}`;
+
+  let fetchData = `https://api.openweathermap.org/geo/1.0/direct?q=${uservalue}&limit=5&appid=${apiKey}`;
 
   fetch(fetchData)
     .then((response) => response.json())
     .then((data) => {
       const { name, lat, lon } = data[0];
       getweatherUpdates(name, lat, lon);
+      saveItems()
     })
     .catch(() => {
       errorMsg.classList.toggle("hidden");
@@ -153,12 +188,13 @@ function getUserLocation() {
       }, 1000);
     });
 }
+
 function getLocationBtnLocation() {
   navigator.geolocation.getCurrentPosition(
     (position) => {
       const { latitude, longitude } = position.coords;
       fetch(
-        `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=&appid=${apiKey}`
+        `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=&appid=${apiKey}`
       )
         .then((response) => response.json())
         .then((data) => {
@@ -183,5 +219,13 @@ function getLocationBtnLocation() {
   );
 }
 
+recentSearchesDropdown.addEventListener("change", function () {
+  let selectedCity = this.value;
+  if (selectedCity) {
+      userInput.value = selectedCity;
+      getUserLocation();
+  }
+});
+window.onload = loadItems;
 locationBtn.addEventListener("click", getLocationBtnLocation);
 searchBtn.addEventListener("click", getUserLocation);
