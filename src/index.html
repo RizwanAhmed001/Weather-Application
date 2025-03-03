@@ -27,7 +27,7 @@
         <h1 id="heading" class="text-2xl font-bold">Weather</h1>
 
        
-        <ul id="recentList" class="bg-slate-800 rounded-1xl p-1 min-w-[25vw] flex items-center justify-between hover:bg-slate-600">Recent Searches <i class="fa-solid fa-chevron-down hover:text-black"></i></ul>
+        <ul id="recentList" class="bg-slate-800 rounded-1xl p-1 min-w-[25vw] flex items-center justify-between hover:bg-blue-400">Recent Searches <i class="fa-solid fa-chevron-down hover:text-black"></i></ul>
 
     </header>
 
@@ -52,6 +52,10 @@
             <button id="locationBtn" class="mt-[10px] mb-[10px] p-1 bg-slate-700 rounded-2xl hover:font-bold hover:bg-slate-600"><i class="fa-solid fa-location-crosshairs"></i>
             Current Location</button>
 
+            <div id="error" class="mt-[5px] mb-[5px] p-1 text-2xl rounded-3xl text-center bg-slate-700 text-red-700 hidden">
+                Hola
+            </div>
+
         </div>
 
         <div id="weatherOutput" class="md:w-[70vw] lg:w-[70vw] md:overflow-x-hidden w-full p-2" >
@@ -61,40 +65,40 @@
 
                 <div id="currrentWeatherValues" class="flex flex-col w-full justify-center gap-3  p-2 items-center">
 
-                    <div id="cityDiv" class="bg-slate-800 flex justify-around items-center h-[20vh] rounded-2xl hover:bg-slate-600 w-full">
+                    <div id="cityDiv" class="bg-slate-800 flex justify-around items-center h-[20vh] rounded-2xl hover:bg-blue-400 w-full">
                         <h3 class="font-bold text-2xl">City:</h3>
                         <h3 id="city" class="text-3xl">______</h3>
                     </div>
 
-                    <div id="dateDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-slate-600">
+                    <div id="dateDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-blue-400">
                         <h3 class="font-bold text-2xl">Date:</h3>
                         <h3 id="date" class="text-3xl">______</h3>
                     </div>
 
-                    <div id="temperatureDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-slate-600">
+                    <div id="temperatureDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-blue-400">
                         <h3 class="font-bold text-2xl"><i class="fa-solid fa-temperature-three-quarters text-red-400 text-3xl"></i> Temp</h3>
                         <h3 id="temperature" class="text-3xl">______ &deg;C</h3>
                     </div>
 
-                    <div id="weatherIconDiv" class="bg-slate-800 w-full h-[20vh] flex  items-center justify-around rounded-2xl hover:bg-slate-600 ">
+                    <div id="weatherIconDiv" class="bg-slate-800 w-full h-[20vh] flex  items-center justify-around rounded-2xl hover:bg-blue-400 ">
                         <img class="h-[18vh] " id="currentweatherIcon" src="https://openweathermap.org/img/wn/10d@4x.png" alt="Weather">
                         <h3 id="WeatherText" class="text-3xl">______</h3>
                     </div>
 
-                    <div id="humidityDiv" class="bg-slate-800 w-full h-[20vh] flex  items-center justify-around rounded-2xl hover:bg-slate-600">
+                    <div id="humidityDiv" class="bg-slate-800 w-full h-[20vh] flex  items-center justify-around rounded-2xl hover:bg-blue-400">
                         <h3 class="font-bold text-2xl"><i class="fa-solid fa-droplet text-blue-300 text-3xl"></i> Humidity:</h3>
                         <h3 id="humidity" class="text-3xl">______ %</h3>
                     </div>
 
-                    <div id="windDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-slate-600">
+                    <div id="windDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-blue-400">
                         <h3 class="font-bold text-2xl"><i class="fa-solid fa-wind text-sky-200 text-3xl"></i> Wind:</h3>
                         <h3 id="wind" class="text-3xl">______ M/S</h3>
                     </div>
-                    <div id="cloudDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-slate-600">
+                    <div id="cloudDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-blue-400">
                         <h3 class="font-bold text-2xl"><i class="fa-solid fa-wind text-3xl text-blue-700"></i> Gust:</h3>
                         <h3 id="cloud" class="text-3xl">______ M/S</h3>
                     </div>
-                    <div id="pressureDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-slate-600">
+                    <div id="pressureDiv" class="bg-slate-800 w-full h-[20vh] flex items-center justify-around rounded-2xl hover:bg-blue-400">
                         <h3 class="font-bold text-2xl"><i class="fa-solid fa-volcano text-3xl text-red-300 "></i> Pressure:</h3>
                         <h3 id="presure" class="text-3xl">______ hPa</h3>
                     </div>
@@ -110,7 +114,7 @@
 
                 <div id="forcastContainer" class="flex flex-col justify-center items-center gap-3 p-2 md:grid  md:grid-cols-2 lg:grid-cols-3 ">
 
-                    <div class="p-3 flex flex-col mt-[5px] mb-[5px] bg-slate-800  rounded-2xl w-full hover:bg-slate-600">
+                    <div class="p-3 flex flex-col mt-[5px] mb-[5px] bg-slate-800  rounded-2xl w-full hover:bg-blue-400">
 
                         <h3 id="fdate1" class="text-[1.25rem]"> _____</h3>
 
@@ -124,7 +128,7 @@
 
                     </div>
 
-                    <div class="p-3 flex flex-col mt-[5px] mb-[5px] bg-slate-800 w-full rounded-2xl ] hover:bg-slate-600">
+                    <div class="p-3 flex flex-col mt-[5px] mb-[5px] bg-slate-800 w-full rounded-2xl ] hover:bg-blue-400">
 
                         <h3 id="fdate2" class="text-[1.25rem]">_____</h3>
 
@@ -138,7 +142,7 @@
 
                     </div>
 
-                    <div class="p-3 flex flex-col mt-[5px] mb-[5px] bg-slate-800 w-full rounded-2xl  hover:bg-slate-600">
+                    <div class="p-3 flex flex-col mt-[5px] mb-[5px] bg-slate-800 w-full rounded-2xl  hover:bg-blue-400">
 
                         <h3 id="fdate3" class="text-[1.25rem]">_____</h3>
 
@@ -152,7 +156,7 @@
 
                     </div>
 
-                    <div class="p-3 flex flex-col mt-[5px] mb-[5px] bg-slate-800 w-full rounded-2xl  hover:bg-slate-600">
+                    <div class="p-3 flex flex-col mt-[5px] mb-[5px] bg-slate-800 w-full rounded-2xl  hover:bg-blue-400">
 
                         <h3 id="fdate4" class="text-[1.25rem]">_____</h3>
 
@@ -166,7 +170,7 @@
 
                     </div>
 
-                    <div class="p-3 flex flex-col mt-[5px] mb-[5px]  bg-slate-800 w-full rounded-2xl  hover:bg-slate-600">
+                    <div class="p-3 flex flex-col mt-[5px] mb-[5px]  bg-slate-800 w-full rounded-2xl  hover:bg-blue-400">
 
                         <h3 id="fdate5" class="text-[1.25rem]">_____</h3>
 

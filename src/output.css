@@ -9,13 +9,13 @@
     --color-red-300: oklch(0.808 0.114 19.571);
     --color-red-400: oklch(0.704 0.191 22.216);
     --color-red-500: oklch(0.637 0.237 25.331);
-    --color-yellow-400: oklch(0.852 0.199 91.936);
+    --color-red-700: oklch(0.505 0.213 27.518);
     --color-sky-200: oklch(0.901 0.058 230.902);
     --color-blue-300: oklch(0.809 0.105 251.813);
+    --color-blue-400: oklch(0.707 0.165 254.624);
     --color-blue-600: oklch(0.546 0.245 262.881);
     --color-blue-700: oklch(0.488 0.243 264.376);
     --color-blue-800: oklch(0.424 0.199 265.638);
-    --color-blue-950: oklch(0.282 0.091 267.935);
     --color-slate-600: oklch(0.446 0.043 257.281);
     --color-slate-700: oklch(0.372 0.044 257.287);
     --color-slate-800: oklch(0.279 0.041 260.031);
@@ -28,6 +28,7 @@
     --text-3xl--line-height: calc(2.25 / 1.875);
     --font-weight-bold: 700;
     --radius-2xl: 1rem;
+    --radius-3xl: 1.5rem;
     --ease-in: cubic-bezier(0.4, 0, 1, 1);
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
@@ -509,6 +510,9 @@
   }
   .w-\[50\%\] {
     width: 50%;
+  }
+  .w-\[60\%\] {
+    width: 60%;
   }
   .w-full {
     width: 100%;
@@ -1008,6 +1012,9 @@
   .rounded-2xl {
     border-radius: var(--radius-2xl);
   }
+  .rounded-3xl {
+    border-radius: var(--radius-3xl);
+  }
   .rounded-s {
     border-start-start-radius: 0.25rem;
     border-end-start-radius: 0.25rem;
@@ -1468,9 +1475,6 @@
   .\[color\:red\]\/50\! {
     color: color-mix(in oklab, red 50%, transparent) !important;
   }
-  .text-black {
-    color: var(--color-black);
-  }
   .text-blue-300 {
     color: var(--color-blue-300);
   }
@@ -1479,9 +1483,6 @@
   }
   .text-blue-700 {
     color: var(--color-blue-700);
-  }
-  .text-blue-950 {
-    color: var(--color-blue-950);
   }
   .text-red-300 {
     color: var(--color-red-300);
@@ -1492,14 +1493,14 @@
   .text-red-500 {
     color: var(--color-red-500);
   }
+  .text-red-700 {
+    color: var(--color-red-700);
+  }
   .text-sky-200 {
     color: var(--color-sky-200);
   }
   .text-white {
     color: var(--color-white);
-  }
-  .text-yellow-400 {
-    color: var(--color-yellow-400);
   }
   .capitalize {
     text-transform: capitalize;
@@ -1952,6 +1953,13 @@
     &:hover {
       @media (hover: hover) {
         border-bottom-color: var(--color-red-400);
+      }
+    }
+  }
+  .hover\:bg-blue-400 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-blue-400);
       }
     }
   }
