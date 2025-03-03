@@ -31,7 +31,7 @@ OpenWeatherMap API - Fetching weather data.
 
 Installation and Setup...
 
-Clone the repository: git clone https://github.com/yourusername/weather-forecast-app.git
+Clone the repository: git clone https://github.com/RizwanAhmed001/Weather-Application.git
 
 Navigate to the project directory: cd weather Project
 
