@@ -203,7 +203,7 @@ function getLocationBtnLocation() {
     (position) => {
       const { latitude, longitude } = position.coords;
       fetch(
-        `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=&appid=${apiKey}`
+        `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`
       )
         .then((response) => response.json())
         .then((data) => {
